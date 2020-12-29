@@ -78,6 +78,10 @@
   flex-wrap: wrap;
   max-width: 800px;
   margin-top: 3rem;
+
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .card {
@@ -118,5 +122,21 @@
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+}
+
+.search input {
+  margin-right: 0.5em;
+}
+
+@media (max-width: 600px) {
+  .search input {
+    margin-right: 0;
+    margin-bottom: 0.5em;
+  }
+
+  .search input,
+  .search button {
+    width: 100%;
   }
 }
