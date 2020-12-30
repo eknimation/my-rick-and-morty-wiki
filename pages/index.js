@@ -117,14 +117,26 @@ export default function Home({ data }) {
           {results.map((result) => {
             const { id, name, image } = result;
             return (
-              <li key={id} className={styles.card}>
+              <motion.li
+                key={id}
+                className={styles.card}
+                whileHover={{
+                  position: "relative",
+                  zIndex: 1,
+                  background: "white",
+                  scale: 1.2,
+                  transition: {
+                    duration: 0.2,
+                  },
+                }}
+              >
                 <Link href={`/character/${id}`}>
                   <a>
                     <img src={image} alt={`${name} Thumbnail`} />
                     <h3>{name}</h3>
                   </a>
                 </Link>
-              </li>
+              </motion.li>
             );
           })}
         </ul>
