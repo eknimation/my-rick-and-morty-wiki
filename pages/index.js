@@ -2,6 +2,8 @@ import Head from "next/head";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
+import { motion } from "framer-motion";
+
 import styles from "../styles/Home.module.css";
 
 const defaultEnpoint = `https://rickandmortyapi.com/api/character/`;
@@ -84,7 +86,25 @@ export default function Home({ data }) {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Wubba Lubba Dub Dub!</h1>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {
+              scale: 0.8,
+              opacity: 0,
+            },
+            visible: {
+              scale: 1,
+              opacity: 1,
+              transition: {
+                delay: 0.4,
+              },
+            },
+          }}
+        >
+          <h1 className={styles.title}>Wubba Lubba Dub Dub!</h1>
+        </motion.div>
 
         <p className={styles.description}>Rick and Morty Character Wiki</p>
 
@@ -97,14 +117,27 @@ export default function Home({ data }) {
           {results.map((result) => {
             const { id, name, image } = result;
             return (
-              <li key={id} className={styles.card}>
+              <motion.li
+                key={id}
+                className={styles.card}
+                whileHover={{
+                  position: "relative",
+                  zIndex: 1,
+                  background: "white",
+                  scale: [1, 1.4, 1.2],
+                  rotate: [0, 10, -10, 0],
+                  transition: {
+                    duration: 0.2,
+                  },
+                }}
+              >
                 <Link href={`/character/${id}`}>
                   <a>
                     <img src={image} alt={`${name} Thumbnail`} />
                     <h3>{name}</h3>
                   </a>
                 </Link>
-              </li>
+              </motion.li>
             );
           })}
         </ul>
